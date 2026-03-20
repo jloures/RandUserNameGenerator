@@ -7,6 +7,10 @@ let activeInput = null;
 function createSuggestionUI() {
     if (suggestionPopup) return;
 
+    // Remove any leftover UI from previous extension reloads
+    let existing = document.getElementById("usergen-suggestion-popup");
+    if (existing) existing.remove();
+
     suggestionPopup = document.createElement("div");
     suggestionPopup.id = "usergen-suggestion-popup";
     suggestionPopup.style.cssText = `
@@ -71,8 +75,8 @@ function showSuggestion(input) {
         const settings = data.settings || { style: "friendly", includeNumbers: true, includeSymbols: false, length: 12 };
         const name = generateUsernameLogic(settings);
 
-        const nameEl = document.getElementById("usergen-suggested-name");
-        nameEl.textContent = name;
+        const nameEl = suggestionPopup.querySelector("#usergen-suggested-name");
+        if (nameEl) nameEl.textContent = name;
 
         const rect = input.getBoundingClientRect();
         const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
