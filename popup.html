@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RandUserNameGenerator</title>
+  <link rel="stylesheet" href="popup.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="glass-container">
+    <header>
+      <div class="logo">
+        <img src="icons/icon48.png" alt="Logo">
+        <h1>UserGen</h1>
+      </div>
+    </header>
+
+    <main>
+      <div class="result-area">
+        <input type="text" id="username-display" readonly placeholder="Generating...">
+        <button id="copy-btn" title="Copy to clipboard">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+        </button>
+      </div>
+
+      <div class="controls">
+        <div class="control-group">
+          <label for="style-select">Style</label>
+          <select id="style-select">
+            <option value="friendly">Friendly (Adjective + Noun)</option>
+            <option value="alphanumeric">Random Alphanumeric</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label>Options</label>
+          <div class="checkbox-pair">
+            <label class="checkbox-container">
+              <input type="checkbox" id="include-numbers" checked>
+              <span class="checkmark"></span>
+              Numbers
+            </label>
+            <label class="checkbox-container">
+              <input type="checkbox" id="include-symbols">
+              <span class="checkmark"></span>
+              Symbols
+            </label>
+          </div>
+        </div>
+
+        <div class="control-group" id="length-control" style="display: none;">
+          <label for="length-slider">Length: <span id="length-val">12</span></label>
+          <input type="range" id="length-slider" min="6" max="32" value="12">
+        </div>
+
+        <button id="generate-btn" class="primary-btn">Regenerate</button>
+        <button id="fill-btn" class="secondary-btn">Fill Active Field</button>
+      </div>
+    </main>
+
+    <div id="toast" class="toast">Copied!</div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
