@@ -1,20 +1,4 @@
-// popup.js
-
-const ADJECTIVES = [
-    "Swift", "Quiet", "Bold", "Frosty", "Golden", "Crimson", "Neon", "Classic", "Ancient", "Mystic",
-    "Electric", "Lunar", "Solar", "Brave", "Crafty", "Daring", "Eager", "Fluffy", "Gentle", "Hidden",
-    "Icy", "Jolly", "Kind", "Lucky", "Mighty", "Noble", "Ocean", "Proud", "Quick", "Rare",
-    "Silver", "Tough", "Urban", "Vivid", "Wild", "Young", "Zesty", "Amber", "Bright", "Calm"
-];
-
-const NOUNS = [
-    "Tiger", "Falcon", "Phoenix", "Ranger", "Seeker", "Glider", "Echo", "Aura", "Pulse", "Nomad",
-    "Wolf", "Bear", "Panda", "Eagle", "Raven", "Shark", "Whale", "Dragon", "Knight", "Wizard",
-    "Storm", "Cloud", "River", "Mountain", "Forest", "Star", "Moon", "Sun", "Shadow", "Light",
-    "Spark", "Flame", "Wave", "Leaf", "Stone", "Iron", "Steel", "Gold", "Silver", "Copper"
-];
-
-const SYMBOLS = ["_", "-", "."];
+// popup.js - logic moved to utils.js
 
 // DOM Elements
 const display = document.getElementById("username-display");
@@ -104,39 +88,18 @@ function saveSettings() {
 }
 
 function generateUsername() {
-    const style = styleSelect.value;
-    const useNumbers = includeNumbers.checked;
-    const useSymbols = includeSymbols.checked;
+    chrome.storage.sync.get(["settings"], (data) => {
+        const settings = data.settings || {
+            style: styleSelect.value,
+            includeNumbers: includeNumbers.checked,
+            includeSymbols: includeSymbols.checked,
+            length: parseInt(lengthSlider.value)
+        };
 
-    let result = "";
-
-    if (style === "friendly") {
-        const adj = ADJECTIVES[Math.floor(Math.random() * ADJECTIVES.length)];
-        const noun = NOUNS[Math.floor(Math.random() * NOUNS.length)];
-        result = adj + noun;
-
-        if (useSymbols) {
-            const sym = SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
-            result = adj + sym + noun;
-        }
-
-        if (useNumbers) {
-            result += Math.floor(Math.random() * 100);
-        }
-    } else {
-        // Alphanumeric
-        let chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        if (useNumbers) chars += "0123456789";
-        if (useSymbols) chars += "!@#$%^&*()_+-=[]{}|;:,.<>?";
-
-        const len = parseInt(lengthSlider.value);
-        for (let i = 0; i < len; i++) {
-            result += chars.charAt(Math.floor(Math.random() * chars.length));
-        }
-    }
-
-    currentUsername = result;
-    display.value = result;
+        const result = generateUsernameLogic(settings);
+        currentUsername = result;
+        display.value = result;
+    });
 }
 
 function showToast() {

@@ -1,12 +1,12 @@
 :root {
-  --primary-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
-  --secondary-gradient: linear-gradient(135deg, #3b82f6 0%, #2dd4bf 100%);
-  --bg-dark: #0f172a;
-  --glass-bg: rgba(30, 41, 59, 0.7);
-  --glass-border: rgba(255, 255, 255, 0.1);
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
-  --accent: #818cf8;
+  --primary-gradient: linear-gradient(135deg, #000000 0%, #333333 100%);
+  --secondary-gradient: linear-gradient(135deg, #444444 0%, #666666 100%);
+  --bg-dark: #fcfcfc;
+  --glass-bg: rgba(255, 255, 255, 0.9);
+  --glass-border: rgba(0, 0, 0, 0.1);
+  --text-primary: #111111;
+  --text-secondary: #666666;
+  --accent: #000000;
 }
 
 * {
@@ -69,11 +69,11 @@ header {
 
 #username-display {
   flex-grow: 1;
-  background: rgba(0, 0, 0, 0.2);
+  background: #fff;
   border: 1px solid var(--glass-border);
   border-radius: 8px;
   padding: 10px 12px;
-  color: #fff;
+  color: #111;
   font-family: 'Inter', monospace;
   font-size: 1rem;
   outline: none;
@@ -81,16 +81,15 @@ header {
 }
 
 #username-display:focus {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+  border-color: #000;
 }
 
 #copy-btn {
-  background: rgba(255, 255, 255, 0.05);
+  background: #fff;
   border: 1px solid var(--glass-border);
   border-radius: 8px;
   padding: 8px;
-  color: var(--text-secondary);
+  color: #666;
   cursor: pointer;
   transition: all 0.2s;
   display: flex;
@@ -99,8 +98,8 @@ header {
 }
 
 #copy-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: #fff;
+  background: #f0f0f0;
+  color: #000;
   transform: translateY(-1px);
 }
 
@@ -162,11 +161,11 @@ select {
   border-radius: 4px;
 }
 
-.checkbox-container:hover input ~ .checkmark {
+.checkbox-container:hover input~.checkmark {
   background-color: rgba(255, 255, 255, 0.15);
 }
 
-.checkbox-container input:checked ~ .checkmark {
+.checkbox-container input:checked~.checkmark {
   background: var(--primary-gradient);
   border: none;
 }
@@ -184,7 +183,7 @@ select {
   transform: rotate(45deg);
 }
 
-.checkbox-container input:checked ~ .checkmark:after {
+.checkbox-container input:checked~.checkmark:after {
   display: block;
 }
 
@@ -208,7 +207,8 @@ input[type=range]::-webkit-slider-thumb {
   box-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
 }
 
-.primary-btn, .secondary-btn {
+.primary-btn,
+.secondary-btn {
   width: 100%;
   border: none;
   border-radius: 8px;
@@ -222,23 +222,27 @@ input[type=range]::-webkit-slider-thumb {
 }
 
 .primary-btn {
-  background: var(--primary-gradient);
-  box-shadow: 0 4px 15px rgba(168, 85, 247, 0.3);
+  background: #000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .primary-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(168, 85, 247, 0.4);
+  background: #222;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 }
 
 .secondary-btn {
-  background: var(--secondary-gradient);
-  box-shadow: 0 4px 15px rgba(45, 212, 191, 0.2);
+  background: #fff;
+  color: #000;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .secondary-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(45, 212, 191, 0.3);
+  background: #f9f9f9;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .toast {
