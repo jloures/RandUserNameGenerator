@@ -39,7 +39,13 @@
   },
   "browser_specific_settings": {
     "gecko": {
-      "id": "randusernamegen@jloures.me"
+      "id": "rand-user-gen-v1@extensions.mozilla.org",
+      "strict_min_version": "128.0",
+      "data_collection_permissions": {
+        "required": [
+          "none"
+        ]
+      }
     }
   }
 }
