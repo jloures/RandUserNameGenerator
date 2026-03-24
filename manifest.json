@@ -5,8 +5,7 @@
   "description": "Generate random usernames for any account creation form with a single click.",
   "permissions": [
     "storage",
-    "activeTab",
-    "scripting"
+    "activeTab"
   ],
   "action": {
     "default_popup": "popup.html",
